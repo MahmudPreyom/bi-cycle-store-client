@@ -1,4 +1,3 @@
-// import "./Footer.css";
 import logo from "../../../assets/Adobe Express - file.png";
 import { Link } from "react-router-dom";
 import { Button, Row, Col, Form, Input } from "antd";

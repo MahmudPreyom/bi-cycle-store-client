@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import "./Navbar.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Button } from "antd";
 import { useState } from "react";
