@@ -84,7 +84,9 @@ const Footer = () => {
             </div>
           </h2>
           <Form className="footer-form">
-            <MdOutlineMailOutline style={{ color: "#ccc", fontSize: "35px" }} />
+            <MdOutlineMailOutline
+              style={{ color: "#ffff", fontSize: "35px" }}
+            />
             <Form.Item
               name="email"
               //   rules={[{ required: true, message: "Please enter your email!" }]}
@@ -96,7 +98,7 @@ const Footer = () => {
                 style={{
                   width: "100%",
                   background: "transparent",
-                  color: "#ccc",
+                  color: "#ffff",
                   padding: "10px",
                   border: 0,
                   outline: "none",
@@ -113,7 +115,7 @@ const Footer = () => {
               }}
             >
               <FaArrowRightToBracket
-                style={{ color: "#ccc", fontSize: "22px" }}
+                style={{ color: "#ffff", fontSize: "22px" }}
               />
             </Button>
           </Form>

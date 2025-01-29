@@ -7,13 +7,20 @@
   margin: 0;
 }
 
+:root {
+  --primary-color: #4b5563;
+  --secondary-color: #9ca3af;
+  --secondary-color-optional: #d4e6f1;
+  --accent-color: #f3f4f6;
+  --background-color: #ffffff;
+}
+
 html {
   font-size: 62.5%;
   font-family: "Noto Sans", serif;
 }
 .anticon {
   position: absolute;
-  /* top: 0; */
   left: 0;
 }
 
@@ -36,65 +43,75 @@ li {
 header {
   height: 10rem;
   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
-  background-color: #d4e6f1;
+  background-color: var(--accent-color);
   width: 100%;
 }
 
-.container {
+.nav-container {
   max-width: 132rem;
   margin: auto;
   height: 10rem;
 }
 
-.grid {
-  display: grid;
-}
-
+/* Navbar Grid Layout */
 .navbar-grid {
-  grid-template-columns: 0.5fr 1fr;
-  align-items: center;
-  height: 10rem;
-  padding: 0 3.2rem;
-}
-
-nav ul {
   display: flex;
-  justify-content: flex-end;
-  gap: 3.2rem;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px 20px;
 }
 
+/* Navigation List */
+.nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+/* Individual Nav Items */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+
+/* Navigation Buttons - Aligned Centrally */
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Button Styling */
+.nav-btn {
+  font-weight: bold;
+  font-size: 16px;
+  background: var(--secondary-color-optional);
+  padding: 6px 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Hamburger Menu */
 .ham-menu {
   display: none;
 }
 
-/* media queries */
-@media screen and (max-width: 998px) {
-  .menu-web {
-    display: none;
+/* Mobile View: Show Hamburger and Hide Nav */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* Hide menu in mobile */
   }
-
   .ham-menu {
-    display: inline-block;
-    /* justify-content: flex-end; */
-    text-align: end;
-  }
-
-  .menu-mobile {
-    position: absolute;
-    top: 10rem;
-    left: 0;
-    background-color: #ffff;
-    width: 100%;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px;
-    z-index: 100;
-  }
-
-  .menu-mobile ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    padding: 1.2rem 0;
+    display: block; /* Show hamburger menu */
   }
 }
 
@@ -103,15 +120,19 @@ nav ul {
 Button {
   cursor: pointer;
 }
+
 /* Footer design */
 footer {
   width: 100%;
   position: absolute;
-  color: aliceblue;
+  color: var(--accent-color);
   /* bottom: 0; */
-  background: linear-gradient(to right, #00093c, #2d0b00);
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
   padding: 50px 0 50px;
-  /* border-top-right-radius: 125px; */
   border-radius: 0 125px 0 0;
   font-size: 13px;
   line-height: 20px;
@@ -126,7 +147,7 @@ footer {
 .footer-animation-div {
   width: 100%;
   height: 5px;
-  background: #767676;
+  background: var(--secondary-color);
   border-radius: 3px;
   position: absolute;
   top: 25px;
@@ -137,7 +158,7 @@ footer {
 .footer-animation-div span {
   width: 15px;
   height: 100%;
-  background: #fff;
+  background: var(--background-color);
   border-radius: 3px;
   position: absolute;
   top: 0;
@@ -146,7 +167,7 @@ footer {
 }
 
 .footer-link {
-  color: white;
+  color: var(--background-color);
   text-decoration: none;
 }
 
@@ -155,7 +176,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--background-color);
   margin-bottom: 50px;
 }
 
@@ -166,31 +187,10 @@ footer {
   text-align: center;
   line-height: 40px;
   font-size: 20px;
-  color: #000;
-  background: #fff;
+  color: var(--primary-color);
+  background: var(--background-color);
   cursor: pointer;
   padding: 7px;
-}
-
-.underline {
-  width: 100%;
-  height: 5px;
-  background: #767676;
-  border-radius: 3px;
-  position: absolute;
-  top: 25px;
-  left: 0;
-  overflow: hidden;
-}
-.underline span {
-  width: 15px;
-  height: 100%;
-  background: #fff;
-  border-radius: 3px;
-  position: absolute;
-  top: 0;
-  left: 10px;
-  animation: moving 2s linear infinite;
 }
 
 @keyframes moving {

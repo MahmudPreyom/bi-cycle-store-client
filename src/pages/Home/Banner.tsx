@@ -1,29 +1,11 @@
-import React from "react";
-import { Carousel } from "antd";
+import b1 from "../../assets/banner-1.jpg";
 
-const contentStyle: React.CSSProperties = {
-  height: "200px",
-  color: "#fff",
-  lineHeight: "160px",
-  textAlign: "center",
-  background: "#364d79",
+const Banner = () => {
+  return (
+    // <div className="">
+    <img style={{ objectFit: "cover", width: "100%" }} src={b1} alt="" />
+    // </div>
+  );
 };
-
-const Banner: React.FC = () => (
-  <Carousel autoplay>
-    <div>
-      <h3 style={contentStyle}>1</h3>
-    </div>
-    <div>
-      <h3 style={contentStyle}>2</h3>
-    </div>
-    <div>
-      <h3 style={contentStyle}>3</h3>
-    </div>
-    <div>
-      <h3 style={contentStyle}>4</h3>
-    </div>
-  </Carousel>
-);
 
 export default Banner;
