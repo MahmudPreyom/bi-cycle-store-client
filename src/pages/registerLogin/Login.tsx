@@ -1,62 +1,78 @@
-import type { FormProps } from "antd";
-import { Button, Checkbox, Form, Input } from "antd";
-
-type FieldType = {
-  username?: string;
-  password?: string;
-  remember?: string;
-};
-
-const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-  console.log("Success:", values);
-};
-
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Button, Col, Flex } from "antd";
+import ShopForm from "../../components/form/ShopForm";
+import ShopInput from "../../components/form/ShopInput";
+import { toast } from "sonner";
+import { FieldValues } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks";
+import { verifyToken } from "../../utils/verifyToken";
+import { setUser, TUser } from "../../redux/features/auth/authSlice";
+import { useLoginMutation } from "../../redux/features/auth/authApi";
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const dispatch = useAppDispatch();
+
+  const [login] = useLoginMutation();
+
+  const defaultValues = {
+    email: "c15@gmail.com",
+    password: "customer123",
+  };
+
+  // const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+  const onSubmit = async (data: FieldValues) => {
+    console.log(data);
+
+    const toastId = toast.loading("Loggin in");
+    try {
+      const userInfo = {
+        email: data.email,
+        password: data.password,
+      };
+      const res = await login(userInfo).unwrap();
+      const user = verifyToken(res.data.accessToken) as TUser;
+
+      console.log(user);
+
+      dispatch(setUser({ user: user, token: res.data.accessToken }));
+      toast.success("login success", { id: toastId, duration: 2000 });
+      // navigate(`
+      navigate(`/`);
+    } catch (err) {
+      toast.error("something wants wrong", { id: toastId, duration: 2000 });
+    }
+  };
   return (
-    <Form
-      name="basic"
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
-      style={{ maxWidth: 600 }}
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
+    <Flex
+      justify="center"
+      align="center"
+      style={{ minHeight: "100vh", padding: "16px" }}
     >
-      <Form.Item<FieldType>
-        label="Username"
-        name="username"
-        rules={[{ required: true, message: "Please input your username!" }]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item<FieldType>
-        label="Password"
-        name="password"
-        rules={[{ required: true, message: "Please input your password!" }]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item<FieldType>
-        name="remember"
-        valuePropName="checked"
-        label={null}
-      >
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
-      <Form.Item label={null}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+      <Col xs={24} sm={16} md={12} lg={8} xl={6}>
+        <ShopForm onSubmit={onSubmit} defaultValues={defaultValues}>
+          <h1
+            style={{
+              fontSize: "1.8rem",
+              textAlign: "center",
+              marginBottom: "24px",
+            }}
+          >
+            Please login Bicycle shop
+          </h1>
+          <ShopInput type="text" name="email" label="Email" />
+          <ShopInput type="password" name="password" label="Password" />
+          <p className="sign-and-login">
+            Have you no account? <Link to="/register">Sign Up</Link>
+          </p>
+          <Button className="nav-btn" htmlType="submit" block>
+            Login
+          </Button>
+        </ShopForm>
+      </Col>
+    </Flex>
   );
 };
 

@@ -41,7 +41,11 @@ const ShopForm = ({
 
   return (
     <FormProvider {...methods}>
-      <Form layout="vertical" onFinish={methods.handleSubmit(submit)}>
+      <Form
+        layout="vertical"
+        onFinish={methods.handleSubmit(submit)}
+        className="custom-form"
+      >
         {children}
       </Form>
     </FormProvider>

@@ -1,14 +1,12 @@
-// import MainLayout from "./components/layout/MainLayout";
-// import Home from "./pages/Home/Home";
-// import Navbar from "./pages/sharePage/Navbar/Navbar";
+import MainLayout from "./components/layout/MainLayout";
+import ProtectedRoute from "./components/layout/ProtectedRoute";
 
-// function App() {
-//   return (
-//     <>
-//       <Navbar />
-//       <Home />
-//     </>
-//   );
-// }
+function App() {
+  return (
+    <ProtectedRoute>
+      <MainLayout />
+    </ProtectedRoute>
+  );
+}
 
-// export default App;
+export default App;
