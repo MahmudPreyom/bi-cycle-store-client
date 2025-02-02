@@ -4,6 +4,7 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/registerLogin/Login";
 import Register from "../pages/registerLogin/Register";
 import App from "../App";
+import AllBicycles from "../pages/Home/AllBiCycle";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
       {
         path: "/admin",
         element: <App />,
+      },
+      {
+        path: "/all-bicycles",
+        element: <AllBicycles />,
       },
     ],
   },

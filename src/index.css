@@ -47,6 +47,14 @@ header {
   width: 100%;
 }
 
+.menu-mobile {
+  display: block; /* Show the mobile menu */
+}
+
+.menu-web {
+  display: flex; /* Default, shows in desktop view */
+}
+
 .nav-container {
   max-width: 132rem;
   margin: auto;
@@ -113,10 +121,32 @@ header {
 /* Mobile View: Show Hamburger and Hide Nav */
 @media (max-width: 768px) {
   .nav-links {
-    display: none; /* Hide menu in mobile */
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
   }
+
+  /* Show nav links when the menu is toggled */
+  .nav-links.show {
+    display: flex;
+  }
+
   .ham-menu {
-    display: block; /* Show hamburger menu */
+    display: block;
+  }
+
+  /* Mobile Menu Toggle */
+  .menu-mobile {
+    display: block;
+    background: #fff;
+    position: absolute;
+    top: 85px;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    z-index: 10;
   }
 }
 
@@ -126,16 +156,93 @@ Button {
   cursor: pointer;
 }
 
-/* ShopForm design */
-/* .custom-form {
-  background-color: #f0f0f0;
+/* bicycle-card css start */
+.bicycle-card {
+  width: 60%;
+  margin: auto;
   padding: 20px;
-  border-radius: 8px;
+  text-align: center;
+}
+/* bicycle-card css end */
+
+/* testimonial css start */
+
+.testimonial-container {
+  max-width: 900px;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 
-.sign-and-login {
-  margin-bottom: 25px;
-} */
+.testimonial-container h1 {
+  font-size: 40px;
+  text-align: center;
+}
+.testimonial-container p {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.testimonial-slide {
+  position: relative;
+  height: 400px; /* Ensure height is defined */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-image: url(../src/assets/testimonialBG.webp);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Dark overlay for better text visibility */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+/* Content container */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 80%;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Profile image (avatar) */
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid white;
+  margin-bottom: 15px;
+}
+
+/* Testimonial text */
+.testimonial-text {
+  font-size: 20px;
+  font-style: italic;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Name of reviewer */
+.testimonial-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* testimonial css end */
 
 .custom-form {
   background-color: #f0f0f0;
@@ -242,5 +349,44 @@ footer {
   .col:nth-child(2),
   .col:nth-child(3) {
     flex-basis: 100%;
+  }
+
+  .testimonial-container {
+    width: 100%;
+  }
+
+  .testimonial-slide {
+    height: 300px;
+  }
+
+  .testimonial-text {
+    font-size: 1rem;
+  }
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+  }
+  .bicycle-card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonial-container {
+    width: 100%;
+  }
+
+  .testimonial-slide {
+    height: 250px;
+  }
+
+  .testimonial-text {
+    font-size: 0.9rem;
+  }
+
+  .avatar {
+    width: 50px;
+    height: 50px;
   }
 }
