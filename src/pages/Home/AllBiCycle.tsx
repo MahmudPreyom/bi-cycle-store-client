@@ -57,8 +57,8 @@ const AllBicycles: React.FC = () => {
                   marginTop: "20px",
                 }}
               >
-                {/* <Link to="/details-bicycles"> */}
-                <Link to={`/details-bicycles/${_id}`}>
+                {/* <Link to={`/details-bicycles/${_id}`}> */}
+                <Link to="#">
                   <Button className="nav-btn">Details</Button>
                 </Link>
                 <Link to="/">

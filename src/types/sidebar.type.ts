@@ -18,4 +18,12 @@ export type TUserPath = {
   path?: string;
   element?: ReactNode;
   children?: TUserPath[];
+  hidden?: boolean;
+};
+
+export type MenuItemType = {
+  key: string;
+  label: string | ReactNode;
+  icon?: ReactNode;
+  children?: MenuItemType[];
 };

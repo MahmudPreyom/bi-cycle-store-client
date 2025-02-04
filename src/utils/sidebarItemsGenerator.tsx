@@ -6,7 +6,7 @@ export const sidebarItemsGenerator = (items: TUserPath[]) => {
     if (item.path && item.name) {
       acc.push({
         key: item.name,
-        label: <NavLink to={`/dashboard/${item.path}`}>{item.name}</NavLink>, // Fixed path
+        label: <NavLink to={`/dashboard/${item.path}`}>{item.name}</NavLink>,
       });
     }
 
@@ -19,7 +19,7 @@ export const sidebarItemsGenerator = (items: TUserPath[]) => {
             return {
               key: child.name,
               label: (
-                <NavLink to={`/dashboard/${child.path}`}>{child.name}</NavLink> // Fixed path
+                <NavLink to={`/dashboard/${child.path}`}>{child.name}</NavLink>
               ),
             };
           }
@@ -32,4 +32,3 @@ export const sidebarItemsGenerator = (items: TUserPath[]) => {
 
   return sidebarItems;
 };
-

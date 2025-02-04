@@ -17,11 +17,6 @@ const Login = () => {
 
   const [login] = useLoginMutation();
 
-  // const defaultValues = {
-  //   email: "c15@gmail.com",
-  //   password: "customer123",
-  // };
-
   // const onSubmit: SubmitHandler<FieldValues> = async (data) => {
   const onSubmit = async (data: FieldValues) => {
     // console.log(data);

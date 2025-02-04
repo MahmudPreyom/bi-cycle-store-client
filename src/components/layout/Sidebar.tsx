@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Layout, Menu } from "antd";
 import { sidebarItemsGenerator } from "../../utils/sidebarItemsGenerator";
 import { useAppSelector } from "../../redux/hooks";
 import { selectCurrentUser } from "../../redux/features/auth/authSlice";
 import { adminPath } from "../../routes/admin.routes";
 import { userPaths } from "../../routes/user.routes";
+import { ItemType } from "antd/es/menu/interface";
 const { Sider } = Layout;
 
 const userRole = {
@@ -14,7 +16,7 @@ const userRole = {
 const Sidebar = () => {
   const user = useAppSelector(selectCurrentUser);
 
-  let sidebarItems;
+  let sidebarItems: ItemType<any>[] | undefined; 
 
   switch (user!.role) {
     case userRole.ADMIN:

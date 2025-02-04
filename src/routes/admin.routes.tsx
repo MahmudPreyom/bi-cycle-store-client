@@ -2,11 +2,12 @@ import AdminDashboard from "../pages/admin/AdminDashboard";
 import AllABiCycle from "../pages/admin/bicycleManagment/AllABiCycle";
 import CreateBicycle from "../pages/admin/bicycleManagment/CreateBicycle";
 import UpdateBicycle from "../pages/admin/bicycleManagment/UpdateBicycle";
+import { TUserPath } from "../types/sidebar.type";
 
-export const adminPath = [
+export const adminPath: TUserPath[] = [
   {
     name: "Dashboard",
-    path: "",
+    path: "dashboard",
     element: <AdminDashboard />,
   },
   {
@@ -23,6 +24,7 @@ export const adminPath = [
         element: <AllABiCycle />,
       },
       {
+        name: "",
         path: "update-bicycle/:id",
         element: <UpdateBicycle />,
         hidden: true,
