@@ -6,9 +6,16 @@ type TInputProps = {
   name: string;
   label?: string;
   disabled?: boolean;
+  defaultValue?: string | number;
 };
 
-const ShopInput = ({ type, name, label, disabled }: TInputProps) => {
+const ShopInput = ({
+  type,
+  name,
+  label,
+  disabled,
+  defaultValue,
+}: TInputProps) => {
   return (
     <div style={{ marginBottom: "20px" }}>
       <Controller
@@ -20,6 +27,7 @@ const ShopInput = ({ type, name, label, disabled }: TInputProps) => {
               type={type}
               id={name}
               size="large"
+              defaultValue={defaultValue}
               disabled={disabled}
             />
           </Form.Item>

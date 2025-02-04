@@ -5,6 +5,11 @@ import Login from "../pages/registerLogin/Login";
 import Register from "../pages/registerLogin/Register";
 import App from "../App";
 import AllBicycles from "../pages/Home/AllBiCycle";
+import SingleBicycleDetails from "../pages/Home/SingleBicycleDetails";
+import About from "../pages/Home/About";
+import { routeGenerator } from "../utils/routesGenerator";
+import { adminPath } from "./admin.routes";
+import { userPaths } from "./user.routes";
 
 export const router = createBrowserRouter([
   {
@@ -16,14 +21,28 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/admin",
-        element: <App />,
-      },
-      {
         path: "/all-bicycles",
         element: <AllBicycles />,
       },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/details-bicycles/:id",
+        element: <SingleBicycleDetails />,
+      },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: <App />,
+    children: routeGenerator(adminPath),
+  },
+  {
+    path: "/dashboard",
+    element: <App />,
+    children: routeGenerator(userPaths),
   },
   {
     path: "/login",

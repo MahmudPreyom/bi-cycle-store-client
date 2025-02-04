@@ -7,7 +7,6 @@ import { toast } from "sonner";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks";
 import { useRegisterMutation } from "../../redux/features/auth/authApi";
-// import { verifyToken } from "../../utils/verifyToken";
 import { setUser, TUser } from "../../redux/features/auth/authSlice";
 
 const Register = () => {

@@ -8,7 +8,17 @@ const productApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    getSingleBicycle: builder.query({
+      query: (productId) => {
+        const params = new URLSearchParams(productId);
+        return {
+          url: `products/${productId}`,
+          method: "GET",
+          params: params,
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetAllProductsQuery } = productApi;
+export const { useGetAllProductsQuery, useGetSingleBicycleQuery } = productApi;

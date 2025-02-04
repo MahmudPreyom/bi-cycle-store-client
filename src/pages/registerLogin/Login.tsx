@@ -17,14 +17,14 @@ const Login = () => {
 
   const [login] = useLoginMutation();
 
-  const defaultValues = {
-    email: "c15@gmail.com",
-    password: "customer123",
-  };
+  // const defaultValues = {
+  //   email: "c15@gmail.com",
+  //   password: "customer123",
+  // };
 
   // const onSubmit: SubmitHandler<FieldValues> = async (data) => {
   const onSubmit = async (data: FieldValues) => {
-    console.log(data);
+    // console.log(data);
 
     const toastId = toast.loading("Logging in");
     try {
@@ -35,7 +35,7 @@ const Login = () => {
       const res = await login(userInfo).unwrap();
       const user = verifyToken(res.data.accessToken) as TUser;
 
-      console.log(user);
+      // console.log(user);
 
       dispatch(setUser({ user: user, token: res.data.accessToken }));
       toast.success("login success", { id: toastId, duration: 2000 });
@@ -52,7 +52,7 @@ const Login = () => {
       style={{ minHeight: "100vh", padding: "16px" }}
     >
       <Col xs={24} sm={16} md={12} lg={8} xl={6}>
-        <ShopForm onSubmit={onSubmit} defaultValues={defaultValues}>
+        <ShopForm onSubmit={onSubmit}>
           <h1
             style={{
               fontSize: "1.8rem",

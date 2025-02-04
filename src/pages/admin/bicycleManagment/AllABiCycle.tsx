@@ -1,7 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
-import { Card, Spin, Row, Col, Button } from "antd";
-import { useGetAllProductsQuery } from "../../redux/features/products/productsManagmentApi";
-import { Link, useNavigate } from "react-router-dom";
+import { Card, Spin, Row, Col, Button, Modal, message } from "antd";
+import { Link } from "react-router-dom";
+import {
+  useDeleteBicycleMutation,
+  useGetAllBicycleQuery,
+} from "../../../redux/features/admin/bicycleManagment.api";
 
 interface Product {
   _id: string;
@@ -11,18 +15,46 @@ interface Product {
   quantity: number;
 }
 
-const AllBicycles: React.FC = () => {
+const AllABicycles: React.FC = () => {
   const {
     data: products,
     isFetching,
     error,
-  } = useGetAllProductsQuery(undefined);
-  const navigate = useNavigate();
+  } = useGetAllBicycleQuery(undefined);
+  const [deleteBicycle] = useDeleteBicycleMutation();
 
   if (isFetching) return <Spin size="large" />;
   if (error) return <p>Error fetching products</p>;
   if (!products || !Array.isArray(products.data))
     return <p>No products available</p>;
+
+  const handleDelete = async (id: string) => {
+    Modal.confirm({
+      title: "Are you sure?",
+      content:
+        "Do you really want to delete this bicycle? This action cannot be undone.",
+      okText: "Yes, Delete",
+      okType: "danger",
+      cancelText: "Cancel",
+      onOk: async () => {
+        const hide = message.loading("Deleting...", 0); 
+
+        try {
+          const res = await deleteBicycle(id);
+          hide(); 
+
+          if ("error" in res) {
+            message.error("Failed to delete bicycle");
+          } else {
+            message.success("Bicycle deleted successfully");
+          }
+        } catch (err) {
+          hide();
+          message.error("Something went wrong");
+        }
+      },
+    });
+  };
 
   return (
     <div className="bicycle-card">
@@ -57,34 +89,26 @@ const AllBicycles: React.FC = () => {
                   marginTop: "20px",
                 }}
               >
-                {/* <Link to="/details-bicycles"> */}
-                <Link to={`/details-bicycles/${_id}`}>
-                  <Button className="nav-btn">Details</Button>
+                <Link to={`/dashboard/update-bicycle/${_id}`}>
+                  <Button className="nav-btn">Update</Button>
                 </Link>
-                <Link to="/">
-                  <Button
-                    disabled={quantity === 0}
-                    style={{
-                      backgroundColor: quantity === 0 ? "#FFF5EE" : "",
-                      borderColor: quantity === 0 ? "orange" : "",
-                    }}
-                    className="nav-btn"
-                  >
-                    {quantity === 0 ? "Out of Stock" : "Add to Cart"}
-                  </Button>
-                </Link>
+                <Button
+                  style={{
+                    backgroundColor: "red",
+                    color: "white",
+                  }}
+                  className="nav-btn"
+                  onClick={() => handleDelete(_id)} 
+                >
+                  Delete
+                </Button>
               </div>
             </Card>
           </Col>
         ))}
       </Row>
-
-      {/* Back Button */}
-      <Button onClick={() => navigate(-1)} style={{ marginTop: "20px" }}>
-        Back
-      </Button>
     </div>
   );
 };
 
-export default AllBicycles;
+export default AllABicycles;

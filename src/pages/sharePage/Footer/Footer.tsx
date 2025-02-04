@@ -136,7 +136,7 @@ const Footer = () => {
         }}
       />
       <p style={{ textAlign: "center" }}>
-        Mahmud Preyom © 2025 - All Rights Reserved
+        Mahmud Preyom © - All Rights Reserved
       </p>
     </footer>
   );

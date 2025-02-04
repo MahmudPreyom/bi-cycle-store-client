@@ -1,0 +1,52 @@
+.about-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.carousel-slide {
+  height: 350px;
+  padding: 40px;
+  text-align: center;
+  background: #364d79;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.carousel-slide h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.carousel-slide p {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .carousel-slide {
+    padding: 20px;
+  }
+
+  .carousel-slide h1 {
+    font-size: 1.5rem;
+  }
+
+  .carousel-slide p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-slide h1 {
+    font-size: 1.2rem;
+  }
+
+  .carousel-slide p {
+    font-size: 0.9rem;
+  }
+}

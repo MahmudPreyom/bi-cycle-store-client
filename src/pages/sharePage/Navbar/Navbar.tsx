@@ -2,12 +2,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { GiHamburgerMenu, GiShop } from "react-icons/gi";
 import { Button } from "antd";
-import { IoIosContact, IoIosHome } from "react-icons/io";
+import { IoIosHome } from "react-icons/io";
 import { GrServices } from "react-icons/gr";
 import { RiDashboardLine } from "react-icons/ri";
 import { logout } from "../../../redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import logo from "../../../assets/Adobe Express - file.png";
+import { TiThSmallOutline } from "react-icons/ti";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -35,13 +36,13 @@ const Navbar = () => {
           <nav className={showMenu ? "menu-mobile" : "menu-web"}>
             <ul className={`nav-links ${showMenu ? "show" : ""}`}>
               <li>
-                <Link className="nav-item" to="#">
+                <Link className="nav-item" to="/">
                   <IoIosHome />
                   <span>Home</span>
                 </Link>
               </li>
               <li>
-                <Link className="nav-item" to="#">
+                <Link className="nav-item" to="/about">
                   <GiShop />
                   <span>About</span>
                 </Link>
@@ -53,14 +54,15 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <Link className="nav-item" to="#">
-                  <IoIosContact />
-                  <span>Contact</span>
+                <Link className="nav-item" to="/all-bicycles">
+                  {/* <IoIosContact /> */}
+                  <TiThSmallOutline />
+                  <span>All Bicycle</span>
                 </Link>
               </li>
               {user && (
                 <li>
-                  <Link className="nav-item" to="#">
+                  <Link className="nav-item" to="/dashboard">
                     <RiDashboardLine />
                     <span>Dashboard</span>
                   </Link>
