@@ -21,7 +21,7 @@ const AllABicycles: React.FC = () => {
     isFetching,
     error,
   } = useGetAllBicycleQuery(undefined);
-  const [deleteBicycle] = useDeleteBicycleMutation();
+  const [deleteBicycle] = useDeleteBicycleMutation(undefined);
 
   if (isFetching) return <Spin size="large" />;
   if (error) return <p>Error fetching products</p>;
@@ -37,11 +37,11 @@ const AllABicycles: React.FC = () => {
       okType: "danger",
       cancelText: "Cancel",
       onOk: async () => {
-        const hide = message.loading("Deleting...", 0); 
+        const hide = message.loading("Deleting...", 0);
 
         try {
           const res = await deleteBicycle(id);
-          hide(); 
+          hide();
 
           if ("error" in res) {
             message.error("Failed to delete bicycle");
@@ -92,13 +92,14 @@ const AllABicycles: React.FC = () => {
                 <Link to={`/dashboard/update-bicycle/${_id}`}>
                   <Button className="nav-btn">Update</Button>
                 </Link>
+
                 <Button
                   style={{
                     backgroundColor: "red",
                     color: "white",
                   }}
                   className="nav-btn"
-                  onClick={() => handleDelete(_id)} 
+                  onClick={() => handleDelete(_id)}
                 >
                   Delete
                 </Button>

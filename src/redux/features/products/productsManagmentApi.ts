@@ -9,10 +9,10 @@ const productApi = baseApi.injectEndpoints({
       }),
     }),
     getSingleBicycle: builder.query({
-      query: (productId) => {
-        const params = new URLSearchParams(productId);
+      query: (id) => {
+        const params = new URLSearchParams(id);
         return {
-          url: `products/${productId}`,
+          url: `products/${id}`,
           method: "GET",
           params: params,
         };

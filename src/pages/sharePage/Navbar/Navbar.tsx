@@ -72,13 +72,22 @@ const Navbar = () => {
               {/* Buttons Aligned Center with Nav Links */}
               <div>
                 {user ? (
-                  <li>
-                    <Link to="/">
-                      <Button onClick={handleLogout} className="nav-btn">
-                        Logout
-                      </Button>
-                    </Link>
-                  </li>
+                  <div style={{ display: "flex", gap: "4px" }}>
+                    <li>
+                      <Link to="/">
+                        <Button onClick={handleLogout} className="nav-btn">
+                          Cart
+                        </Button>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/">
+                        <Button onClick={handleLogout} className="nav-btn">
+                          Logout
+                        </Button>
+                      </Link>
+                    </li>
+                  </div>
                 ) : (
                   <div className="nav-buttons">
                     <li>

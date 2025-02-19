@@ -30,7 +30,7 @@ const Register = () => {
       localStorage.setItem("accessToken", res.data.accessToken);
       toast.success("Register Successfully", { id: toastId, duration: 2000 });
       // navigate(`
-      navigate("/");
+      navigate("/login");
     } catch (err) {
       toast.error("something wants wrong", { id: toastId, duration: 2000 });
     }

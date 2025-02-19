@@ -12,7 +12,8 @@ import { logout, setUser } from "../features/auth/authSlice";
 import { toast } from "sonner";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://bi-cycle-store-server-beta.vercel.app/api",
+  // baseUrl: "https://bi-cycle-store-server-beta.vercel.app/api",
+  baseUrl: "http://localhost:5000/api",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
@@ -42,7 +43,8 @@ const baseQueryWithRefreshToken: BaseQueryFn<
     // console.log("sending refresh token");
 
     const res = await fetch(
-      "https://bi-cycle-store-server-beta.vercel.app/api/auth/refresh-token",
+      // "https://bi-cycle-store-server-beta.vercel.app/api/auth/refresh-token",
+      "http://localhost:5000/api/auth/refresh-token",
       {
         method: "POST",
         credentials: "include",
