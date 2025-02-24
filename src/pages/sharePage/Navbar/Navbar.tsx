@@ -74,10 +74,8 @@ const Navbar = () => {
                 {user ? (
                   <div style={{ display: "flex", gap: "4px" }}>
                     <li>
-                      <Link to="/">
-                        <Button onClick={handleLogout} className="nav-btn">
-                          Cart
-                        </Button>
+                      <Link to="/dashboard/order">
+                        <Button className="nav-btn">Cart</Button>
                       </Link>
                     </li>
                     <li>

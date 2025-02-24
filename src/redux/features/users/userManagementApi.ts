@@ -10,7 +10,14 @@ export const userManagementApi = baseApi.injectEndpoints({
       }),
       //   invalidatesTags: ["User"],
     }),
+    getAllUsers: builder.query({
+      query: () => ({
+        url: "/user",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useUpdateUserPasswordMutation } = userManagementApi;
+export const { useUpdateUserPasswordMutation, useGetAllUsersQuery } =
+  userManagementApi;

@@ -1,7 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import { Card, Spin, Row, Col, Button } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { useGetAllProductsQuery } from "../../redux/features/products/productsManagmentApi";
+import { useCreateOrderBiCycleMutation } from "../../redux/features/orders/orderManagmentApi";
+import { toast } from "sonner";
+import { useAppSelector } from "../../redux/hooks";
 
 interface Product {
   _id: string;
@@ -18,6 +23,8 @@ const Bicycle: React.FC = () => {
     isFetching,
     error,
   } = useGetAllProductsQuery(undefined);
+  const [createOrderBiCycle] = useCreateOrderBiCycleMutation();
+  const user = useAppSelector((state: any) => state.auth.user);
 
   if (isFetching) return <Spin size="large" />;
   if (error) return <p>Error fetching products</p>;
@@ -25,6 +32,27 @@ const Bicycle: React.FC = () => {
     return <p>No products available</p>;
 
   const displayedProducts = products.data.slice(0, 6);
+
+  const handleAddToCart = async (productId: string, quantity: number) => {
+    if (!user) {
+      return toast.error("Please log in to place an order");
+    }
+
+    const toastId = toast.loading("Adding to cart...");
+
+    try {
+      const orderData = { product: productId, quantity };
+      const response = await createOrderBiCycle(orderData);
+
+      if ("error" in response) {
+        throw new Error("Failed to add to cart");
+      }
+
+      toast.success("Added to cart successfully!", { id: toastId });
+    } catch (err) {
+      toast.error("Something went wrong", { id: toastId });
+    }
+  };
 
   return (
     <div className="bicycle-card">
@@ -75,6 +103,7 @@ const Bicycle: React.FC = () => {
                         borderColor: quantity === 0 ? "orange" : "",
                       }}
                       className="nav-btn"
+                      onClick={() => handleAddToCart(_id, 1)}
                     >
                       {quantity === 0 ? "Out of Stock" : "Add to Cart"}
                     </Button>

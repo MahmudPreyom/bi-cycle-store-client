@@ -2,17 +2,43 @@ import { baseApi } from "../../api/baseApi";
 
 const orderApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getSingleOrder: builder.query({
-      query: (id) => {
-        const params = new URLSearchParams(id);
-        return {
-          url: `orders/${id}`,
-          method: "GET",
-          params: params,
-        };
-      },
+    getUserOrders: builder.query({
+      query: () => ({
+        url: "orders/order/my-orders",
+        method: "GET",
+      }),
+      providesTags: ["Orders"],
+    }),
+    createOrderBiCycle: builder.mutation({
+      query: (orderData) => ({
+        url: "/orders",
+        method: "POST",
+        body: orderData,
+        credentials: "include",
+      }),
+      invalidatesTags: ["Orders"],
+    }),
+    updateBicycleOrder: builder.mutation({
+      query: (args) => ({
+        url: `/orders/${args.id}`,
+        method: "PATCH",
+        body: args.data,
+      }),
+      invalidatesTags: ["Orders"],
+    }),
+    deleteBicycleOrder: builder.mutation({
+      query: (orderId) => ({
+        url: `/orders/${orderId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Orders"],
     }),
   }),
 });
 
-export const { useGetSingleOrderQuery } = orderApi;
+export const {
+  useGetUserOrdersQuery,
+  useDeleteBicycleOrderMutation,
+  useUpdateBicycleOrderMutation,
+  useCreateOrderBiCycleMutation,
+} = orderApi;
