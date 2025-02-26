@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useGetSingleBicycleQuery } from "../../redux/features/products/productsManagmentApi"; // Correct path for the hook
 import { Button, Spin } from "antd";
+import bicycle from "../../assets/bicycle.png";
 import "./SingleBicycleDetails.css";
 
 const SingleBicycleDetails = () => {
@@ -22,8 +23,8 @@ const SingleBicycleDetails = () => {
         <h1 className="title">{product?.data?.name}</h1>
         <img
           src={
-            product?.data?.image ||
-            "https://i.ibb.co.com/Pzxq5b46/n2-black-4r.png"
+            bicycle
+            // "https://i.ibb.co.com/Pzxq5b46/n2-black-4r.png"
           }
           alt={product?.data?.name}
           className="bicycle-image"

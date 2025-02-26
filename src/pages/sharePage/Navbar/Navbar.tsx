@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { GiHamburgerMenu, GiShop } from "react-icons/gi";
 import { Button } from "antd";
 import { IoIosHome } from "react-icons/io";
-import { GrServices } from "react-icons/gr";
+// import { GrServices } from "react-icons/gr";
 import { RiDashboardLine } from "react-icons/ri";
 import { logout } from "../../../redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
@@ -47,12 +47,12 @@ const Navbar = () => {
                   <span>About</span>
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link className="nav-item" to="#">
                   <GrServices />
                   <span>Service</span>
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link className="nav-item" to="/all-bicycles">
                   {/* <IoIosContact /> */}
