@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { Table } from "antd";
 import { useGetUserOrdersByAdminQuery } from "../../../redux/features/orders/orderManagmentApi";
