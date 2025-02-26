@@ -1,12 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link, useParams } from "react-router-dom";
 import { useGetSingleBicycleQuery } from "../../redux/features/products/productsManagmentApi"; // Correct path for the hook
 import { Button, Spin } from "antd";
 import bicycle from "../../assets/bicycle.png";
 import "./SingleBicycleDetails.css";
+import { useAppSelector } from "../../redux/hooks";
+import { useCreateOrderBiCycleMutation } from "../../redux/features/orders/orderManagmentApi";
+import { toast } from "sonner";
 
 const SingleBicycleDetails = () => {
   const { id } = useParams();
   const { data: product, isLoading } = useGetSingleBicycleQuery(id);
+  const [createOrderBiCycle] = useCreateOrderBiCycleMutation();
+  const user = useAppSelector((state: any) => state.auth.user);
 
   if (isLoading) {
     return (
@@ -15,6 +22,27 @@ const SingleBicycleDetails = () => {
       </div>
     );
   }
+
+  const handleAddToCart = async (productId: string, quantity: number) => {
+      if (!user) {
+        return toast.error("Please log in to place an order");
+      }
+  
+      const toastId = toast.loading("Adding to cart...");
+  
+      try {
+        const orderData = { product: productId, quantity };
+        const response = await createOrderBiCycle(orderData);
+  
+        if ("error" in response) {
+          throw new Error("Failed to add to cart");
+        }
+  
+        toast.success("Added to cart successfully!", { id: toastId });
+      } catch (err) {
+        toast.error("Something went wrong", { id: toastId });
+      }
+    };
 
   return (
     <div className="details-container">
@@ -58,6 +86,7 @@ const SingleBicycleDetails = () => {
               borderColor: product?.data?.quantity === 0 ? "orange" : "",
             }}
             className="nav-btn"
+            onClick={() => handleAddToCart(product?.data?._id, 1)}
           >
             {product?.data?.quantity === 0 ? "Out of Stock" : "Add to Cart"}
           </Button>
