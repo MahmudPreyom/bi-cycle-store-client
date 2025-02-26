@@ -2,6 +2,7 @@ import AdminDashboard from "../pages/admin/AdminDashboard";
 import AllABiCycle from "../pages/admin/bicycleManagment/AllABiCycle";
 import CreateBicycle from "../pages/admin/bicycleManagment/CreateBicycle";
 import UpdateBicycle from "../pages/admin/bicycleManagment/UpdateBicycle";
+import UsersAllOrder from "../pages/admin/OrderManagment/UsersAllOrder";
 import { TUserPath } from "../types/sidebar.type";
 
 export const adminPath: TUserPath[] = [
@@ -30,5 +31,10 @@ export const adminPath: TUserPath[] = [
         hidden: true,
       },
     ],
+  },
+  {
+    name: "User Order",
+    path: "user-order",
+    element: <UsersAllOrder />,
   },
 ];

@@ -9,6 +9,13 @@ const orderApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Orders"],
     }),
+    getUserOrdersByAdmin: builder.query({
+      query: () => ({
+        url: "orders/order/get-all-orders",
+        method: "GET",
+      }),
+      providesTags: ["Orders"],
+    }),
     createOrderBiCycle: builder.mutation({
       query: (orderData) => ({
         url: "/orders",
@@ -41,4 +48,5 @@ export const {
   useDeleteBicycleOrderMutation,
   useUpdateBicycleOrderMutation,
   useCreateOrderBiCycleMutation,
+  useGetUserOrdersByAdminQuery,
 } = orderApi;
