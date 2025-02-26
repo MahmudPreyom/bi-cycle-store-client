@@ -7,6 +7,7 @@ import { useGetAllProductsQuery } from "../../redux/features/products/productsMa
 import { useCreateOrderBiCycleMutation } from "../../redux/features/orders/orderManagmentApi";
 import { toast } from "sonner";
 import { useAppSelector } from "../../redux/hooks";
+import bicycle from "../../assets/bicycle.png";
 
 interface Product {
   _id: string;
@@ -54,6 +55,36 @@ const Bicycle: React.FC = () => {
     }
   };
 
+  /* testing purpose */
+  // const handleAddToCart = async (productId: string, quantity: number, productData: any) => {
+  //   if (!user) {
+  //     return toast.error("Please log in to add items to the cart");
+  //   }
+
+  //   const toastId = toast.loading("Adding to cart...");
+  //   const dispatch = useAppDispatch();
+
+  //   try {
+  //     // Create cart item object
+  //     const cartItem = {
+  //       product: productId,
+  //       name: productData.name,
+  //       price: productData.price,
+  //       stock: productData.stock,
+  //       quantity,
+  //       imageUrl: productData.imageUrl,
+  //     };
+
+  //     // Dispatch Redux action
+  //     dispatch(addToCar(cartItem));
+
+  //     toast.success("Added to cart successfully!", { id: toastId });
+  //   } catch (err) {
+  //     toast.error("Something went wrong", { id: toastId });
+  //   }
+  // };
+  /* testing purpose */
+
   return (
     <div className="bicycle-card">
       <h1
@@ -70,7 +101,8 @@ const Bicycle: React.FC = () => {
                 cover={
                   <img
                     alt={name}
-                    src="https://i.ibb.co.com/Pzxq5b46/n2-black-4r.png"
+                    // src="https://i.ibb.co.com/Pzxq5b46/n2-black-4r.png"
+                    src={bicycle}
                     style={{ objectFit: "cover" }}
                   />
                 }

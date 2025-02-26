@@ -10,6 +10,34 @@ const Orders = () => {
   const { data: order, isLoading } = useGetUserOrdersQuery(undefined);
   const [deleteOrder] = useDeleteBicycleOrderMutation();
 
+  // const [createOrderBiCycle] = useCreateOrderBiCycleMutation();
+  // const cartData = useAppSelector((state) => state.cart);
+
+  // const handlePlaceOrder = async () => {
+  //   await createOrderBiCycle({ products: cartData.items });
+  // };
+
+  // const handlePlaceOrder = async () => {
+  //   if (cartData.items.length === 0) {
+  //     message.warning("Your cart is empty. Please add items before placing an order.");
+  //     return;
+  //   }
+
+  //   const hide = message.loading("Placing order...", 0);
+
+  //   try {
+  //     const response = await createOrderBiCycle({ products: cartData.items }).unwrap();
+
+  //     hide();
+  //     message.success("Order placed successfully!");
+
+  //     console.log("Order response:", response);
+  //   } catch (error) {
+  //     hide();
+  //     message.error("Failed to place order. Please try again.");
+  //     console.error("Order error:", error);
+  //   }
+  // };
 
   const handleDelete = async (id: string) => {
     Modal.confirm({
@@ -74,7 +102,7 @@ const Orders = () => {
           <Link to={`/dashboard/update-order/${record._id}`}>
             <Button type="primary">Update</Button>
           </Link>
-          <Button type="primary">Pay</Button>
+          <Button type="primary">Place Order</Button>
           <Button
             type="primary"
             danger

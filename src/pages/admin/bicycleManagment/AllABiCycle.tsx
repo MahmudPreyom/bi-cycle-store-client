@@ -6,6 +6,7 @@ import {
   useDeleteBicycleMutation,
   useGetAllBicycleQuery,
 } from "../../../redux/features/admin/bicycleManagment.api";
+import bicycle from "../../../assets/bicycle.png";
 
 interface Product {
   _id: string;
@@ -69,7 +70,8 @@ const AllABicycles: React.FC = () => {
               cover={
                 <img
                   alt={name}
-                  src="https://i.ibb.co.com/Pzxq5b46/n2-black-4r.png"
+                  // src="https://i.ibb.co.com/Pzxq5b46/n2-black-4r.png"
+                  src={bicycle}
                   style={{ objectFit: "cover" }}
                 />
               }
