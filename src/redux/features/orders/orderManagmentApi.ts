@@ -33,6 +33,14 @@ const orderApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Orders"],
     }),
+    updateBicycleOrderByAdmin: builder.mutation({
+      query: (args) => ({
+        url: `/orders/orderShipping/${args.id}`,
+        method: "PATCH",
+        body: args.data,
+      }),
+      invalidatesTags: ["Orders"],
+    }),
     deleteBicycleOrder: builder.mutation({
       query: (orderId) => ({
         url: `/orders/${orderId}`,
@@ -47,6 +55,7 @@ export const {
   useGetUserOrdersQuery,
   useDeleteBicycleOrderMutation,
   useUpdateBicycleOrderMutation,
+  useUpdateBicycleOrderByAdminMutation,
   useCreateOrderBiCycleMutation,
   useGetUserOrdersByAdminQuery,
 } = orderApi;
