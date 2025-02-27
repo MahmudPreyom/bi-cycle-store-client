@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
-import { Table, Button, message } from "antd";
+
+import { Modal, Table, Button, message } from "antd";
 import {
   useDeleteBicycleOrderByAdminMutation,
   useGetUserOrdersByAdminQuery,
@@ -28,13 +28,36 @@ const UsersAllOrder: React.FC = () => {
     }
   };
 
-  const handleDeleteOrder = async (orderId: string) => {
-    try {
-      await deleteOrder(orderId);
-      message.success("Order deleted successfully!");
-    } catch (err) {
-      message.error("Failed to delete order");
-    }
+  // const handleDeleteOrder = async (orderId: string) => {
+  //   try {
+  //     await deleteOrder(orderId);
+  //     message.success("Order deleted successfully!");
+  //   } catch (err) {
+  //     message.error("Failed to delete order");
+  //   }
+  // };
+  const { confirm } = Modal;
+
+  const handleDeleteOrder = (orderId: string) => {
+    confirm({
+      title: "Are you sure you want to delete this order?",
+      content: "This action cannot be undone.",
+      okText: "Yes, Delete",
+      okType: "danger",
+      cancelText: "Cancel",
+      onOk: async () => {
+        try {
+          await deleteOrder(orderId);
+          message.success("Order deleted successfully!");
+        } catch (err) {
+          message.error("Failed to delete order");
+        }
+      },
+      onCancel() {
+        // You can leave this empty or add some logic if needed
+        console.log("Delete cancelled");
+      },
+    });
   };
 
   const columns = [
