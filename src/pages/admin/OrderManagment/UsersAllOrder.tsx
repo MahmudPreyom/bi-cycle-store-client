@@ -3,7 +3,7 @@
 import React from "react";
 import { Table, Button, message } from "antd";
 import {
-  // useDeleteBicycleOrderMutation,
+  useDeleteBicycleOrderByAdminMutation,
   useGetUserOrdersByAdminQuery,
   useUpdateBicycleOrderByAdminMutation,
 } from "../../../redux/features/orders/orderManagmentApi";
@@ -11,12 +11,15 @@ import {
 const UsersAllOrder: React.FC = () => {
   const { data, error, isLoading } = useGetUserOrdersByAdminQuery({});
   const [updateOrderStatus] = useUpdateBicycleOrderByAdminMutation();
-  // const [deleteOrder] = useDeleteBicycleOrderMutation();
+  const [deleteOrder] = useDeleteBicycleOrderByAdminMutation();
 
   const handleStatusChange = async (orderId: string) => {
     try {
-      const response = await updateOrderStatus({ id: orderId, data: { status: "Shipped" } }).unwrap();
-  
+      const response = await updateOrderStatus({
+        id: orderId,
+        data: { status: "Shipped" },
+      }).unwrap();
+
       if (response.success) {
         message.success("Order marked as shipped!");
       }
@@ -25,15 +28,14 @@ const UsersAllOrder: React.FC = () => {
     }
   };
 
-  // const handleDeleteOrder = async (orderId: string) => {
-  //   try {
-  //     await deleteOrder(orderId);
-  //     message.success("Order deleted successfully!");
-  //   } catch (err) {
-  //     message.error("Failed to delete order");
-  //   }
-  // };
-  
+  const handleDeleteOrder = async (orderId: string) => {
+    try {
+      await deleteOrder(orderId);
+      message.success("Order deleted successfully!");
+    } catch (err) {
+      message.error("Failed to delete order");
+    }
+  };
 
   const columns = [
     {
@@ -77,15 +79,19 @@ const UsersAllOrder: React.FC = () => {
       key: "createdAt",
       render: (date: string) => new Date(date).toLocaleDateString(),
     },
-    // {
-    //   title: "Actions",
-    //   key: "actions",
-    //   render: (_: any, record: any) => (
-    //     <Button type="primary" danger onClick={() => handleDeleteOrder(record._id)}>
-    //       Delete
-    //     </Button>
-    //   ),
-    // },
+    {
+      title: "Actions",
+      key: "actions",
+      render: (_: any, record: any) => (
+        <Button
+          type="primary"
+          danger
+          onClick={() => handleDeleteOrder(record._id)}
+        >
+          Delete
+        </Button>
+      ),
+    },
   ];
 
   if (isLoading) return <p>Loading orders...</p>;
